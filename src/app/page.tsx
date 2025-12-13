@@ -94,7 +94,6 @@ export default function Home() {
         completed.push(d);
       } else if (d.dueDate < now) {
         overdue.push(d);
-        due.push(d);
       } else {
         upcoming.push(d);
         due.push(d);
