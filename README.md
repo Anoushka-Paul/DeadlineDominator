@@ -1,2 +1,3 @@
 # InternalMarksBachao
-A website to save your internal marks before it's too late
+Frontend setup completed.
+An app that saves your internal marks before it's too late
