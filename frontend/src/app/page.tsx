@@ -26,6 +26,7 @@ export default function Home() {
     const deadlineToAdd: Deadline = {
       ...newDeadline,
       id: crypto.randomUUID(),
+      effort: Math.floor(Math.random() * 7) + 1, // Random effort from 1 to 7 days
       isCompleted: false,
     };
     setDeadlines([deadlineToAdd, ...deadlines]);
@@ -40,8 +41,9 @@ export default function Home() {
     const deadline = deadlines.find(d => d.id === deadlineId);
     if(deadline) {
       toast({
-        title: isCompleted ? "Deadline Completed!" : "Deadline Marked as Due",
-        description: `"${deadline.subject}" moved to ${isCompleted ? 'completed' : 'due'}.`,
+        title: isCompleted ? "Congratulations!" : "Task Incomplete",
+        description: `You've marked "${deadline.subject}" as ${isCompleted ? 'completed' : 'not completed'}.`,
+        variant: isCompleted ? "success" : "default",
       });
     }
   };
@@ -96,9 +98,12 @@ export default function Home() {
         overdue.push(d);
       } else {
         upcoming.push(d);
-        due.push(d);
       }
     });
+    
+    // The `due` array for the "Due" tab in history should only contain non-overdue items
+    const dueItems = deadlines.filter(d => !d.isCompleted && d.dueDate >= now).sort((a,b) => a.dueDate.getTime() - b.dueDate.getTime());
+    due.push(...dueItems);
 
     return {
       upcomingDeadlines: upcoming,

@@ -9,7 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import type { Deadline } from "@/lib/types"
-import { Calendar, Edit, MoreVertical, Tag, Trash2 } from "lucide-react"
+import { Calendar, Edit, MoreVertical, Tag, Trash2, Book, Clock4 } from "lucide-react"
 import { DeadlineForm } from "./deadline-form"
 import { cn } from "@/lib/utils"
 
@@ -73,10 +73,24 @@ export function DeadlineCard({ deadline, onUpdate, onToggleComplete, onDelete }:
             {format(new Date(deadline.dueDate), "EEE, MMM d, yyyy")}
           </span>
         </div>
-        {deadline.marks && (
+        <div className="flex items-center gap-4">
+          {deadline.marks && (
+            <div className="flex items-center text-sm text-muted-foreground">
+              <Tag className="mr-2 h-4 w-4" />
+              <span>Marks: {deadline.marks}</span>
+            </div>
+          )}
+          {deadline.credits && (
+            <div className="flex items-center text-sm text-muted-foreground">
+              <Book className="mr-2 h-4 w-4" />
+              <span>Credits: {deadline.credits}</span>
+            </div>
+          )}
+        </div>
+        {deadline.effort && (
           <div className="flex items-center text-sm text-muted-foreground">
-            <Tag className="mr-2 h-4 w-4" />
-            <span>Marks: {deadline.marks}</span>
+            <Clock4 className="mr-2 h-4 w-4" />
+            <span>~{deadline.effort} days effort</span>
           </div>
         )}
       </CardContent>

@@ -27,6 +27,7 @@ const formSchema = z.object({
   subject: z.string().min(2, "Subject must be at least 2 characters.").max(50),
   description: z.string().min(3, "Description is required.").max(280),
   marks: z.string().optional(),
+  credits: z.string().min(1, "Credits are required."),
   dueDate: z.date({
     required_error: "A due date is required.",
   }),
@@ -47,6 +48,7 @@ export function DeadlineForm({ deadline, onSubmit, onClose }: DeadlineFormProps)
       subject: "",
       description: "",
       marks: "",
+      credits: "",
       dueDate: undefined,
     },
   })
@@ -105,6 +107,20 @@ export function DeadlineForm({ deadline, onSubmit, onClose }: DeadlineFormProps)
           />
           <FormField
             control={form.control}
+            name="credits"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Credits</FormLabel>
+                <FormControl>
+                  <Input placeholder="e.g. 3" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <FormField
+            control={form.control}
             name="dueDate"
             render={({ field }) => (
               <FormItem className="flex flex-col">
@@ -142,7 +158,6 @@ export function DeadlineForm({ deadline, onSubmit, onClose }: DeadlineFormProps)
               </FormItem>
             )}
           />
-        </div>
         <div className="flex justify-end gap-2">
             <Button type="button" variant="ghost" onClick={onClose}>Cancel</Button>
             <Button type="submit">{deadline ? "Save Changes" : "Add Deadline"}</Button>

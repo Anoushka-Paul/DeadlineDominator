@@ -3,6 +3,8 @@ export type Deadline = {
   subject: string;
   description: string;
   marks?: string;
+  credits?: string;
+  effort?: number;
   dueDate: Date;
   isCompleted: boolean;
 };
