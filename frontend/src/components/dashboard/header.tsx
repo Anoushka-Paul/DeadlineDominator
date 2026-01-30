@@ -18,7 +18,7 @@ export function DashboardHeader({ onAddDeadline }: DashboardHeaderProps) {
     <header className="sticky top-0 z-10 flex items-center justify-between h-16 px-4 md:px-8 border-b bg-background/80 backdrop-blur-sm">
       <div className="flex items-center gap-3">
         <GraduationCap className="w-7 h-7 text-primary" />
-        <h1 className="text-xl font-bold tracking-tight font-headline">Internal Marks Bachao</h1>
+        <h1 className="text-xl font-bold tracking-tight font-headline">Deadline Dominator</h1>
       </div>
       <div className="flex items-center gap-4">
         <div className="hidden md:flex items-center gap-2 text-sm text-muted-foreground">
